@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#4b2fc9">
+<meta name="description" content="Cerveau Fort : calcul mental, énigmes, logique et observation.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cerveau Fort">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Cerveau Fort</title>
 <style>
 :root{--bg:#f3f0ff;--card:#fff;--txt:#2a1f55;--mut:#7a6fa8;--p:#6c3cf0;--ok:#22b35e;--ko:#ef4444;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -20,7 +28,6 @@ button{font:inherit;color:inherit;border:0;cursor:pointer}
 .chip{background:var(--card);border-radius:20px;padding:8px 14px;font-weight:800;box-shadow:0 2px 0 rgba(108,60,240,.15)}
 #back{background:var(--card);width:44px;height:44px;border-radius:50%;font-size:22px;font-weight:900}
 .sp{flex:1}
-/* Accueil */
 #home{align-items:center;justify-content:center;text-align:center;gap:14px}
 .brain{font-size:84px;animation:bob 2.4s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-10px) rotate(-4deg)}}
@@ -30,8 +37,9 @@ button{font:inherit;color:inherit;border:0;cursor:pointer}
 .tag{color:var(--mut);margin:4px 0 14px;max-width:300px}
 .big{width:100%;max-width:320px;padding:18px;border-radius:22px;background:linear-gradient(135deg,#7c4dff,#5a2fe0);color:#fff;font-size:21px;font-weight:900;box-shadow:0 5px 0 #3b1fa8}
 .big.alt{background:linear-gradient(135deg,#ffb02e,#ff8a1f);box-shadow:0 5px 0 #c4640a}
+.plink{display:inline-block;color:var(--txt);background:var(--card);border:2px solid var(--p);font-weight:800;text-decoration:none;padding:12px 20px;border-radius:18px;font-size:16px;margin-top:8px;box-shadow:0 3px 0 rgba(108,60,240,.25)}
+.plink:active{transform:translateY(2px)}
 .big:active,.c:active,.cat button:active{transform:translateY(3px)}
-/* Menu */
 h2{margin:0 0 12px;font-size:24px}
 .cat{background:var(--card);border-radius:22px;padding:14px;margin-bottom:12px;border-left:10px solid var(--c)}
 .ct{display:flex;align-items:center;gap:10px;font-size:19px;margin-bottom:10px}.ct span{font-size:30px}
@@ -39,7 +47,6 @@ h2{margin:0 0 12px;font-size:24px}
 .lv button{background:var(--c);color:#fff;border-radius:14px;padding:10px 4px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:2px}
 .lv button:disabled{background:var(--mut);opacity:.45}
 .lv small{font-size:15px;letter-spacing:1px}
-/* Jeu */
 .pb{height:12px;background:var(--card);border-radius:8px;overflow:hidden;margin-bottom:6px}
 #bar{height:100%;width:0;background:var(--g);transition:width .3s;border-radius:8px}
 #qn{color:var(--mut);font-weight:700;margin-bottom:10px}
@@ -60,7 +67,6 @@ h2{margin:0 0 12px;font-size:24px}
 #hint:disabled{opacity:.4}
 #next{margin-top:12px;align-self:center}
 #next[hidden]{display:none}
-/* Résultat & récompenses */
 .res{align-items:center;text-align:center;justify-content:center;gap:12px}
 .stars{font-size:54px;letter-spacing:6px}
 .rows{display:flex;flex-direction:column;gap:10px;align-items:center;width:100%}
@@ -77,17 +83,15 @@ h2{margin:0 0 12px;font-size:24px}
     <div class="chip">⭐ <span id="tp">0</span></div>
     <div class="chip">💡 <span id="th">0</span></div>
   </div>
-
   <section id="home" class="scr on">
     <div class="brain">🧠</div>
     <div class="title" id="logo"></div>
     <p class="tag">Calcul, énigmes, logique et observation : muscle ton cerveau en t’amusant !</p>
     <button class="big" onclick="show('menu')">▶ Jouer</button>
     <button class="big alt" onclick="show('rew')">🏆 Récompenses</button>
+    <a class="plink" href="confidentialite.html">🔒 Politique de confidentialité</a>
   </section>
-
   <section id="menu" class="scr"><h2>Choisis un défi</h2><div id="cats"></div></section>
-
   <section id="game" class="scr">
     <div class="pb"><div id="bar"></div></div>
     <div id="qn"></div>
@@ -98,16 +102,13 @@ h2{margin:0 0 12px;font-size:24px}
     <button id="hint" onclick="hint()">💡 Indice</button>
     <button id="next" class="big" hidden onclick="nextQ()">Suivant</button>
   </section>
-
   <section id="res" class="scr res">
     <div id="rs" class="stars"></div>
     <h2 id="rt"></h2>
     <div class="rows" id="rr"></div>
   </section>
-
-  <section id="rew" class="scr"><h2>Mes récompenses</h2><div id="bl"></div></section>
+  <section id="rew" class="scr"><h2>Mes récompenses</h2><div id="bl"></div><div id="gm"></div><p style="text-align:center"><a class="plink" href="confidentialite.html">🔒 Politique de confidentialité</a></p></section>
 </div>
-
 <script>
 const $=s=>document.querySelector(s),r=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),
 sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]),pick=a=>a[r(0,a.length-1)];
@@ -164,16 +165,65 @@ obs(l,i){
   return{q:`Combien de ${e[0]} vois-tu ?`,vis:`<div class="em">${arr.join(" ")}</div>`,choices:opts(c,[-2,-1,1,2,3]),ans:String(c)}}
  const n=i<2?4:5,sel=sh(POOL),mem=sel.slice(0,n),good=pick(mem),bad=sel.slice(n,n+3);
  return{q:"Quel emoji faisait partie de la liste ?",mem:mem.join(" "),choices:sh([good,...bad]),ans:good}}};
+const GA={enabled:false,measurementId:"G-3GZ0HTVW69",consentKey:"cf-ga"};
+let gaOn=false,gaLoaded=false;
+const gaValid=()=>GA.enabled&&/^G-[A-Z0-9]{6,12}$/.test(GA.measurementId);
+function loadGA(){
+ window["ga-disable-"+GA.measurementId]=false;gaOn=true;
+ if(gaLoaded)return;gaLoaded=true;
+ window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
+ gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"granted"});
+ gtag("js",new Date());
+ gtag("config",GA.measurementId,{allow_google_signals:false,allow_ad_personalization_signals:false,page_location:location.origin+location.pathname,page_referrer:""});
+ const s=document.createElement("script");s.async=true;
+ s.src="https://www.googletagmanager.com/gtag/js?id="+GA.measurementId;
+ document.head.appendChild(s)}
+function track(name,params){if(!gaValid()||!gaOn||!window.gtag)return;try{gtag("event",name,params||{})}catch(e){}}
+function gaChoice(v){try{localStorage.setItem(GA.consentKey,v?"1":"0")}catch(e){}
+ const b=document.getElementById("gacm");if(b)b.remove();
+ if(v)loadGA();else{gaOn=false;window["ga-disable-"+GA.measurementId]=true}}
+function askConsent(){if(!gaValid()||document.getElementById("gacm"))return;
+ const d=document.createElement("div");d.id="gacm";
+ d.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:456px;margin:0 auto;background:var(--card);color:var(--txt);border-radius:20px;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.3);z-index:50;font-size:15px;line-height:1.35";
+ d.innerHTML='<b>Mesure d’audience anonyme</b><p style="margin:6px 0 12px">Nous comptons les parties jouées pour améliorer le jeu. Aucun nom, aucune donnée personnelle, aucune publicité. Si tu es mineur, demande l’accord d’un parent.</p><div style="display:flex;gap:8px"><button class="c" style="flex:1;min-height:0;padding:12px" onclick="gaChoice(true)">J’accepte</button><button class="c" style="flex:1;min-height:0;padding:12px" onclick="gaChoice(false)">Je refuse</button></div>';
+ document.body.appendChild(d)}
+function initGA(){if(!gaValid())return;let c=null;try{c=localStorage.getItem(GA.consentKey)}catch(e){}
+ if(c==="1")loadGA();else if(c===null)askConsent()}
+const ADS={enabled:false,publisherId:"ca-pub-XXXXXXXXXXXXXXXX",test:true,childDirected:false,minLevelsBeforeAd:2};
+let adReady=false,adCount=0;
+function initAds(){
+ if(!ADS.enabled||!/^ca-pub-\d{16}$/.test(ADS.publisherId))return;
+ window.adsbygoogle=window.adsbygoogle||[];
+ window.adBreak=window.adConfig=function(o){window.adsbygoogle.push(o)};
+ const s=document.createElement("script");
+ s.async=true;s.crossOrigin="anonymous";
+ s.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="+ADS.publisherId;
+ s.setAttribute("data-ad-client",ADS.publisherId);
+ if(ADS.test)s.setAttribute("data-adbreak-test","on");
+ if(ADS.childDirected)s.setAttribute("data-tag-for-child-directed-treatment","1");
+ document.head.appendChild(s);adReady=true;
+ try{adConfig({preloadAdBreaks:"on",sound:"off"})}catch(e){}
+}
+function adThen(go){
+ adCount++;let fired=false,started=false;
+ const once=()=>{if(fired)return;fired=true;go()};
+ if(!adReady||adCount<ADS.minLevelsBeforeAd||!navigator.onLine){once();return}
+ const w=setTimeout(()=>{if(!started)once()},2500);
+ try{adBreak({type:"next",name:"niveau_suivant",
+  beforeAd(){started=true;clearTimeout(w)},
+  afterAd(){},
+  adBreakDone(){clearTimeout(w);once()}})}catch(e){clearTimeout(w);once()}
+}
 let G,cur="home";
 function upd(){$("#tp").textContent=S.pts;$("#th").textContent=S.hints}
 function show(id){document.querySelectorAll(".scr").forEach(e=>e.classList.remove("on"));$("#"+id).classList.add("on");cur=id;$("#top").hidden=id=="home";
  clearTimeout(G&&G.t);upd();if(id=="menu")menu();if(id=="rew")rew();scrollTo(0,0)}
 function back(){show(cur=="game"||cur=="res"?"menu":cur=="menu"||cur=="rew"?"home":"home")}
 function menu(){$("#cats").innerHTML=C.map(c=>`<div class="cat" style="--c:${c.c}"><div class="ct"><span>${c.e}</span><b>${c.n}</b></div><div class="lv">${[1,2,3].map(l=>{const o=l==1||S.stars[c.id+(l-1)]>0,s=S.stars[c.id+l]||0;return`<button ${o?"":"disabled"} onclick="play('${c.id}',${l})">${o?"Niveau "+l:"🔒"}<small>${"★".repeat(s)+"☆".repeat(3-s)}</small></button>`}).join("")}</div></div>`).join("")}
-function rew(){$("#bl").innerHTML=B.map(b=>{const u=S.badges.includes(b.n);return`<div class="bg ${u?"":"lk"}"><span class="i">${b.e}</span><div><b>${b.n}</b><small>${b.t}</small></div></div>`}).join("")}
+function rew(){$("#gm").innerHTML=gaValid()?'<button class="chip" onclick="askConsent()">Mesure d’audience : modifier mon choix</button>':"";$("#bl").innerHTML=B.map(b=>{const u=S.badges.includes(b.n);return`<div class="bg ${u?"":"lk"}"><span class="i">${b.e}</span><div><b>${b.n}</b><small>${b.t}</small></div></div>`).join("")}
 function play(cat,lv){const c=C.find(x=>x.id==cat),src=cat=="enig"?sh(R[lv-1]):null;
  G={cat,lv,i:0,ok:0,pts:0,qs:[0,1,2,3,4].map(i=>G_[cat](lv,i,src)),c};
- $("#game").style.setProperty("--g",c.c);show("game");render()}
+ $("#game").style.setProperty("--g",c.c);show("game");render();track("level_start",{level_name:cat+"-"+lv,category:cat,level_number:lv})}
 function render(){const q=G.qs[G.i];G.done=false;G.used=false;clearTimeout(G.t);
  $("#qn").textContent=`${G.c.n} · niveau ${G.lv} · question ${G.i+1}/5`;$("#bar").style.width=G.i*20+"%";
  $("#fb").textContent="";$("#next").hidden=true;$("#qt").textContent=q.q;
@@ -202,13 +252,18 @@ function end(){const k=G.ok,st=k>=5?3:k>=4?2:k>=3?1:0,key=G.cat+G.lv;
  $("#rt").textContent=["Courage, tu peux y arriver !","Bien joué, niveau réussi !","Très bien !","Parfait ! Quel cerveau !"][st];
  const next=G.lv<3&&st>0;
  $("#rr").innerHTML=`<div class="chip">${k}/5 bonnes réponses · +${G.pts} points</div>${st>0?'<div class="chip">💡 +1 indice gagné</div>':""}${nb.map(b=>`<div class="chip">${b.e} Nouvelle récompense : ${b.n}</div>`).join("")}
- ${next?`<button class="big" onclick="play('${G.cat}',${G.lv+1})">Niveau suivant</button>`:""}
- <button class="big ${next?"alt":""}" onclick="play('${G.cat}',${G.lv})">Rejouer</button>
+ ${next?`<button class="big" onclick="adThen(()=>play('${G.cat}',${G.lv+1}))">Niveau suivant</button>`:""}
+ <button class="big ${next?"alt":""}" onclick="adThen(()=>play('${G.cat}',${G.lv}))">Rejouer</button>
  <button class="big alt" onclick="show('menu')">Retour aux défis</button>`;
+ track("level_end",{level_name:G.cat+"-"+G.lv,category:G.cat,level_number:G.lv,success:st>0,correct_answers:k,stars:st,points_gained:G.pts});
+ track("post_score",{score:S.pts,level_name:G.cat+"-"+G.lv});
  show("res")}
 (function(){const cols=["#ef5350","#f08a00","#1ea870","#2b8cf0","#8e5cf6","#e0489a","#f0b400"];
  $("#logo").innerHTML=["CERVEAU","FORT"].map((w,j)=>`<div>${[...w].map((c,i)=>`<b style="background:${cols[(i+j*3)%7]}">${c}</b>`).join("")}</div>`).join("")})();
 upd();
+initAds();
+initGA();
+if("serviceWorker" in navigator){window.addEventListener("load",()=>{try{navigator.serviceWorker.register("service-worker.js").catch(()=>{})}catch(e){}})}
 </script>
 </body>
 </html>
